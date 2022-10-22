@@ -4,9 +4,9 @@ package com.springbootionic.cursomc.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.springbootionic.cursomc.domain.Categoria;
+import com.springbootionic.cursomc.domain.Pedido;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
+public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 	
 }

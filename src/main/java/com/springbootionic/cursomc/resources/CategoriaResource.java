@@ -1,3 +1,4 @@
+// primeira classe chamada pela main, daqui é chamado os métodos nas classes services
 package com.springbootionic.cursomc.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;

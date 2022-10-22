@@ -1,3 +1,4 @@
+// classe que faz contato com a repo, aqui eu faço tratamento de exceções
 package com.springbootionic.cursomc.services;
 
 import java.util.Optional;
