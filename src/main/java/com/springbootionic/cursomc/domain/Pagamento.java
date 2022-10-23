@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.springbootionic.cursomc.domain.enums.EstadoPagamento;
 
 // @Inheritance serve para herança, onde as classes filhas irão gravar os dados complementares da classe que chegar na mãe
@@ -26,6 +27,8 @@ public abstract class Pagamento implements Serializable {
 	
 	// com @joincolumn eu seto qual será minha coluna no DB, @mapsid é para informar que o Id do pagamento será o mesmo que
 	// o id do pedido
+	// jsonbackreference nao permite que pagamentos liste seus pedidos vinculados
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
