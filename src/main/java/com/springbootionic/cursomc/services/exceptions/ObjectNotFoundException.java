@@ -1,4 +1,4 @@
-package com.springbootionic.cursomc.exceptions;
+package com.springbootionic.cursomc.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 	
