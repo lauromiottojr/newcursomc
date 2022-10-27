@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -31,7 +32,9 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@OneToMany(mappedBy = "cliente")
+	// cascade é para executar um comando em cascata, nesse caso excluir em cascata
+	// onde quando eu excluo um cliente, irei também excluir o endereço 
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	// A diferença de Set para List é que o Set não aceita repetição. E também é um conjunto de dados
