@@ -61,6 +61,14 @@ public class Pedido implements Serializable {
 		this.cliente = cliente;
 		this.endercoDeEntrega = endercoDeEntrega;
 	}
+	
+	public Double getValorTotal() {
+		Double soma = 0d;
+		for(ItemPedido ip : itens) {
+			soma = soma + ip.getSubTotal();
+		}
+		return soma;
+	}
 
 	public Integer getId() {
 		return id;
@@ -126,6 +134,5 @@ public class Pedido implements Serializable {
 		Pedido other = (Pedido) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }
