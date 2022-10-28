@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class ItemPedido implements Serializable{
-	
+public class ItemPedido implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	// declaração de ID composto
@@ -24,7 +24,7 @@ public class ItemPedido implements Serializable{
 	private Double preco;
 
 	public ItemPedido() {
-		
+
 	}
 
 	public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
@@ -35,16 +35,24 @@ public class ItemPedido implements Serializable{
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-	
+
 	public Double getSubTotal() {
 		return (preco - desconto) * quantidade;
 	}
-	
+
 	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
-	
+
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
+
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
+	}
+
 	public Produto getProduto() {
 		return id.getProduto();
 	}
@@ -97,5 +105,5 @@ public class ItemPedido implements Serializable{
 		ItemPedido other = (ItemPedido) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }

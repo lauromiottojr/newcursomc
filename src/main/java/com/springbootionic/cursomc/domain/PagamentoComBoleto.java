@@ -5,9 +5,11 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.springbootionic.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("pagamentoComBoleto") // indica para a classe mae (pagamento) que "pagamentoComBoleto" deve ser add no campo type
 public class PagamentoComBoleto extends Pagamento {
 	
 	private static final long serialVersionUID = 1L;

@@ -2,9 +2,11 @@ package com.springbootionic.cursomc.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.springbootionic.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("pagamentoComCartao")// indica para a classe mae (pagamento) que "pagamentoComCartao" deve ser add no campo type
 public class PagamentoComCartao extends Pagamento{
 	
 	private static final long serialVersionUID = 1L;

@@ -12,11 +12,14 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.springbootionic.cursomc.domain.enums.EstadoPagamento;
 
 // @Inheritance serve para herança, onde as classes filhas irão gravar os dados complementares da classe que chegar na mãe
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+//instanciando um objeto do tipo pagamento, com cartão ou boleto
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
