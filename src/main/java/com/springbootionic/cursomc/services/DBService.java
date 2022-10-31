@@ -126,7 +126,7 @@ public class DBService {
 
 		// CLIENTES E ENDERECOS
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "44142282808", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Maria Silva", "junior.miotto36@gmail.com", "44142282808", TipoCliente.PESSOAFISICA);
 		cli1.getTelefone().addAll(Arrays.asList("17996411117", "1766666666"));
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "321815", cli1, c1);
