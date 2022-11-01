@@ -23,7 +23,7 @@ import com.springbootionic.cursomc.domain.enums.TipoCliente;
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -32,33 +32,39 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@JsonIgnore
+	private String senha;
+
 	// cascade é para executar um comando em cascata, nesse caso excluir em cascata
-	// onde quando eu excluo um cliente, irei também excluir o endereço 
+	// onde quando eu excluo um cliente, irei também excluir o endereço
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
-	// A diferença de Set para List é que o Set não aceita repetição. E também é um conjunto de dados
+	// A diferença de Set para List é que o Set não aceita repetição. E também é um
+	// conjunto de dados
 	@ElementCollection
 	@CollectionTable(name = "telefone")
 	private Set<String> telefone = new HashSet<>();
-	
-	// jsonbackreference nao permite que os pedidos do cliente seja serializado quando consultar um pedido apenas
-	//@JsonBackReference
+
+	// jsonbackreference nao permite que os pedidos do cliente seja serializado
+	// quando consultar um pedido apenas
+	// @JsonBackReference
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
-		
+
 	}
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipo == null) ? null : tipo.getCod();
+		this.senha = senha;
 	}
 
 	public Integer getId() {
@@ -101,6 +107,14 @@ public class Cliente implements Serializable {
 		this.tipo = tipo.getCod();
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
@@ -116,7 +130,7 @@ public class Cliente implements Serializable {
 	public void setTelefone(Set<String> telefone) {
 		this.telefone = telefone;
 	}
-	
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -142,5 +156,4 @@ public class Cliente implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	
 }
