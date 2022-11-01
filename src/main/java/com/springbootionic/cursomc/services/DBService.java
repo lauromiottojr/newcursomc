@@ -20,6 +20,7 @@ import com.springbootionic.cursomc.domain.PagamentoComCartao;
 import com.springbootionic.cursomc.domain.Pedido;
 import com.springbootionic.cursomc.domain.Produto;
 import com.springbootionic.cursomc.domain.enums.EstadoPagamento;
+import com.springbootionic.cursomc.domain.enums.Perfil;
 import com.springbootionic.cursomc.domain.enums.TipoCliente;
 import com.springbootionic.cursomc.repositories.CategoriaRepository;
 import com.springbootionic.cursomc.repositories.CidadeRepository;
@@ -129,16 +130,23 @@ public class DBService {
 
 		// CLIENTES E ENDERECOS
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "junior.miotto36@gmail.com", "44142282808", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "junior.miotto36@gmail.com", "44142282808",
+				TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefone().addAll(Arrays.asList("17996411117", "1766666666"));
+
+		Cliente cli2 = new Cliente(null, "Ana Costa", "batataatomica@gmail.com", "38170595070",
+				TipoCliente.PESSOAFISICA, pe.encode("batata"));
+		cli2.getTelefone().addAll(Arrays.asList("18999999998", "77888888441"));
+		cli2.addPerfil(Perfil.ADMIN);
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "321815", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "39148928", cli1, c2);
+		Endereco e3 = new Endereco(null, "Avenida Floriano", "2106", null, "Centro", "15707628", cli2, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
-		clienteRepository.save(cli1);
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		// PEDIDOS E PAGAMENTOS
 
