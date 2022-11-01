@@ -130,12 +130,12 @@ public class DBService {
 
 		// CLIENTES E ENDERECOS
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "junior.miotto36@gmail.com", "44142282808",
+		Cliente cli1 = new Cliente(null, "Maria Silva", "cliente@gmail.com", "44142282808",
 				TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefone().addAll(Arrays.asList("17996411117", "1766666666"));
 
-		Cliente cli2 = new Cliente(null, "Ana Costa", "batataatomica@gmail.com", "38170595070",
-				TipoCliente.PESSOAFISICA, pe.encode("batata"));
+		Cliente cli2 = new Cliente(null, "Ana Costa", "admin@gmail.com", "38170595070",
+				TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli2.getTelefone().addAll(Arrays.asList("18999999998", "77888888441"));
 		cli2.addPerfil(Perfil.ADMIN);
 
