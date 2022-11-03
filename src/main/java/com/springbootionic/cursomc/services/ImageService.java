@@ -10,6 +10,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FilenameUtils;
+import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,6 +51,19 @@ public class ImageService {
 		} catch (IOException e) {
 			throw new FileException("Erro ao ler arquivo!");
 		}
+	}
+
+	// funcao para "cortar" a imagem na menor dimensão, ou seja, se a largura for
+	// menor corta na medida da largura...
+	public BufferedImage cropSquare(BufferedImage sourceImg) {
+		int min = (sourceImg.getHeight() <= sourceImg.getWidth() ? sourceImg.getHeight() : sourceImg.getWidth());
+		return Scalr.crop(sourceImg, (sourceImg.getWidth() / 2) - (min / 2), (sourceImg.getHeight() / 2) - (min / 2),
+				min, min);
+	}
+
+	// funcao para redimencionar uma img
+	public BufferedImage resize(BufferedImage sourceImg, int size) {
+		return Scalr.resize(sourceImg, Scalr.Method.ULTRA_QUALITY, size);
 	}
 
 }
